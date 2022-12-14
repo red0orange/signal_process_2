@@ -4,6 +4,7 @@ ml_data/*
 data_without_preprocess/*
 img/*
 ori_data/*
+image_data/*
 
 .idea
 .vscode/launch.json

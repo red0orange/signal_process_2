@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from scipy import signal
 import scipy.io
 
-import biosppy
 import neurokit2 as nk
 
 from Pan_tompkins_algorithm import Pan_tompkins, HeartRateMaintainer
@@ -34,14 +33,14 @@ def QRC_detection():
 if __name__ == "__main__":
 
 
-    train_root = "/home/huangdehao/github_projects/Proj2-ml/ori_data/training2017"
-    test_root = "/home/huangdehao/github_projects/Proj2-ml/ori_data/sample2017"
+    train_root = "/home/dehao/github_projects/signal_process_2/ori_data/training2017"
+    test_root = "/home/dehao/github_projects/signal_process_2/ori_data/training2017"
 
-    train_csv_path = "/home/huangdehao/github_projects/Proj2-ml/data/train_data.csv"
-    test_csv_path  = "/home/huangdehao/github_projects/Proj2-ml/data/test_data.csv"
+    train_csv_path = "/home/dehao/github_projects/signal_process_2/data/train_data.csv"
+    test_csv_path  = "/home/dehao/github_projects/signal_process_2/data/test_data.csv"
 
-    train_save_dir = "/home/huangdehao/github_projects/Proj2-ml/ml_data/train"
-    test_save_dir = "/home/huangdehao/github_projects/Proj2-ml/ml_data/test"
+    train_save_dir = "/home/dehao/github_projects/signal_process_2/ml_data"
+    test_save_dir = "/home/dehao/github_projects/signal_process_2/ml_data"
 
     # Parameters
     sample_rate = 300
@@ -51,8 +50,9 @@ if __name__ == "__main__":
         csv_reader = csv.reader(open(csv_path))
 
         Xs = []
-        Ys = []
         for ii, row in enumerate(csv_reader):
+            if ii == 500:
+                break
             print("cur index: {}".format(ii))
             filename = row[0]
             label_name = row[1]
@@ -147,7 +147,7 @@ if __name__ == "__main__":
             # Save data
             # save_filename = os.path.join(save_dir, filename + '.mat')
             # scipy.io.savemat(save_filename, {'value': signal, 'label': label})
-        save_filename = os.path.join(save_dir, filename + '.npy')
+        save_filename = os.path.join(save_dir, str(typ) + '.npy')
         np.save(save_filename, Xs)
 
 
